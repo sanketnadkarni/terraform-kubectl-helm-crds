@@ -26,4 +26,8 @@ resource "kubectl_manifest" "crd" {
   server_side_apply = var.server_side_apply
   force_conflicts   = var.force_conflicts
   apply_only        = var.apply_only
+
+  lifecycle {
+    ignore_changes = all
+  }
 }
