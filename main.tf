@@ -14,6 +14,9 @@ resource "null_resource" "status_check" {
   provisioner "local-exec" {
     command = contains([200, 201, 204], data.http.yaml_file[each.value].status_code)
   }
+  lifecycle {
+    ignore_changes = all
+  }
 }
 
 resource "kubectl_manifest" "crd" {
